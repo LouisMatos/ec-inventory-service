@@ -14,9 +14,21 @@ spring:
       database: product-service
       auto-index-creation: true
       uuid-representation: standard
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: inventory-service-group
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: "*"
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
 
 server:
-  port: 8080
+  port: 8061
 
 logging:
   level:
@@ -42,4 +54,7 @@ management:
   endpoint:
     health:
       show-details: always 
-      
+     
+webclient:
+  product:
+    base-url: http://localhost:8051 
