@@ -3,13 +3,11 @@ package br.matosit.inventory_service.application.usecases;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import br.matosit.inventory_service.application.dto.InventoryDTO;
 import br.matosit.inventory_service.application.dto.ProductDTO;
 import br.matosit.inventory_service.domain.exceptions.ProductNotFoundException;
 import br.matosit.inventory_service.infrastructure.gateway.ProductServiceGateway;
-import reactor.core.publisher.Mono;
 
 @Service
 public class FindInventoryUseCase {
