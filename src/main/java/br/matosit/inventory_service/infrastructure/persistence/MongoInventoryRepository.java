@@ -7,6 +7,7 @@ import br.matosit.inventory_service.application.ports.InventoryRepository;
 import br.matosit.inventory_service.domain.entities.Inventory;
 
 @Repository
-public interface MongoInventoryRepository extends MongoRepository<Inventory, String>, InventoryRepository {
+public interface MongoInventoryRepository
+    extends MongoRepository<Inventory, String>, InventoryRepository {
 
 }
