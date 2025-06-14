@@ -9,18 +9,18 @@ public class Product {
   @Id
   private String id;
   private String name;
-  private Integer quantity;
+  private Integer stockQuantity;
 
   // Constructor, getters and setters
-  public Product(String id, String name, Integer quantity) {
+  public Product(String id, String name, Integer stockQuantity) {
     this.id = id;
     this.name = name;
-    this.quantity = quantity;
+    this.stockQuantity = stockQuantity;
   }
 
-  public Product(String name, Integer quantity) {
+  public Product(String name, Integer stockQuantity) {
     this.name = name;
-    this.quantity = quantity;
+    this.stockQuantity = stockQuantity;
   }
 
   public Product() {
@@ -43,17 +43,17 @@ public class Product {
     this.name = name;
   }
 
-  public Integer getQuantity() {
-    return quantity;
+  public Integer getStockQuantity() {
+    return stockQuantity;
   }
 
-  public void setQuantity(Integer quantity) {
-    this.quantity = quantity;
+  public void setStockQuantity(Integer stockQuantity) {
+    this.stockQuantity = stockQuantity;
   }
 
   @Override
   public String toString() {
-    return "Product [id=" + id + ", name=" + name + ", quantity=" + quantity + "]";
+    return "Product [id=" + id + ", name=" + name + ", stockQuantity=" + stockQuantity + "]";
   }
 
 }
