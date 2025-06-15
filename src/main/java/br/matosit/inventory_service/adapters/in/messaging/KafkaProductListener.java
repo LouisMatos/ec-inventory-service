@@ -1,4 +1,4 @@
-package br.matosit.inventory_service.adapters.out.messaging;
+package br.matosit.inventory_service.adapters.in.messaging;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
