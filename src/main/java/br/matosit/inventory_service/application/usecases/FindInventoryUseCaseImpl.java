@@ -21,10 +21,8 @@ public class FindInventoryUseCaseImpl implements FindInventoryUseCase {
   @Override
   public Product find(String productId) {
     log.info("Fetching product with id: {}", productId);
-
     Product product = productServiceGateway.fetchProductById(productId).blockOptional()
         .orElseThrow(() -> new ProductNotFoundException(productId));
-
     return product;
   }
 }
