@@ -170,12 +170,24 @@ jobs:
   
       - name: Create deployment branch
         run: |
-          git checkout -b deployment/${{ steps.get-latest-tag.outputs.version }}
+          # Verifica se o branch já existe (para evitar erro no checkout)
+          if git show-ref --quiet refs/heads/deployment/${{ steps.get-latest-tag.outputs.version }}; then
+            git checkout deployment/${{ steps.get-latest-tag.outputs.version }}
+          else
+            git checkout -b deployment/${{ steps.get-latest-tag.outputs.version }}
+          fi
+          
+          # Garante que o arquivo .env.deployment terá conteúdo único
           echo "IMAGE_TAG=${{ needs.build.outputs.build_id }}" > .env.deployment
+          echo "# Timestamp: $(date +%Y%m%d%H%M%S)" >> .env.deployment  # Linha adicional para forçar mudança
+          
           git add .env.deployment
           git config --local user.email "luismatos000@gmail.com"
           git config --local user.name "Luis Matos"
-          git commit -m "chore: adiciona configuração de deployment para ${{ steps.get-latest-tag.outputs.version }}"
+          
+          # Commit com fallback para evitar falha se não houver mudanças (opcional)
+          git commit -m "chore: atualiza .env.deployment para ${{ steps.get-latest-tag.outputs.version }}" || exit 0
+          
           git push origin deployment/${{ steps.get-latest-tag.outputs.version }}
   
       - name: Verify deployment branch
